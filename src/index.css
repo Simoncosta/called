@@ -1,0 +1,36 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Source+Code+Pro:wght@300&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+*:focus {
+    outline: 0;
+}
+
+html, doby, #root {
+    height: 100vh;
+}
+
+body {
+    font: 14px 'Roboto', sans-serif;
+    background-color: #EFEFEF;
+}
+
+a {
+    /* tirar linha das ancoragens */
+    text-decoration: none;
+}
+
+ul {
+    /* por padrao vem aquelas bolinhas, vamos tirar com o estilo */
+    list-style: none;
+}
+
+button {
+    /* aparecer o layout do mouse como click */
+    cursor: pointer;
+}

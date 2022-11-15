@@ -16,7 +16,24 @@ export default function Profile() {
     const [email, setEmail] = useState(user && user.email);
     const [avatarUrl, setAvatarUrl] = useState(user && user.avatarURL);
 
-    const [imageAvatar, setImageAvatar] = useState(null);
+    const [imageAvatar, setImageAvatar] = useState({});
+
+    function handleFile(e: FormEvent) {
+        const target = e.target as HTMLInputElement;
+
+        if(target.files) {
+            const image = target.files[0];
+
+            if(image.type === "image/png" || image.type === "image/jpeg") {
+                setImageAvatar(image);
+                setAvatarUrl(URL.createObjectURL(target.files[0]));
+            } else {
+                alert("Envie uma imagem do tipo NPG ou JPEG");
+                setImageAvatar({});
+                return null;
+            }
+        }
+    }
 
     async function handleSave(e: FormEvent) {
         e.preventDefault();
@@ -45,7 +62,7 @@ export default function Profile() {
                     toast.success("Alterado com sucesso.");
                 })
                 .catch(console.log);
-        }
+        } 
     }
 
     return(
@@ -64,7 +81,7 @@ export default function Profile() {
                                 <FiUpload color="#FFF" size={25} />
                             </span>
 
-                            <input type="file" accept="image/*" /><br />
+                            <input type="file" accept="image/*" onChange={handleFile} /><br />
                             { avatarUrl === null || avatarUrl === undefined ? 
                             <img src={avatar} width="250" height="250" alt="Perfil do usuário" />
                             :

@@ -83,7 +83,9 @@ function AuthProvider({ children }: any) {
                     const passwordMatch = await compare(password, result[0].password);
 
                     if(!passwordMatch) {
-                        console.log('Email/Password incorrect');
+                        toast.error("Email/Password incorrect.");
+                        setLoadingAuth(false);
+                        return;
                     } 
 
                     let data = {
@@ -98,7 +100,8 @@ function AuthProvider({ children }: any) {
                     setLoadingAuth(false);
                     toast.success("Bem vindo de volta!");
                 } else {
-                    console.log("usuario ou senha incorreta");
+                    toast.error("Email/Password incorrect.");
+                    setLoadingAuth(false);
                 }
             })
             .catch(console.log);      

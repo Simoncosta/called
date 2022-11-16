@@ -6,5 +6,13 @@
       "email": "teste@teste.com",
       "password": "$2a$08$cD5JqHR3Ti8Yb.3Em0JteO41QfXcK1epCL3OS0KJop3/Vf9G6JarO"
     }
+  ],
+  "customers": [
+    {
+      "id": 1668612396261,
+      "nameCompany": "IT Rocket",
+      "cnpj": "123456789",
+      "address": "Rua 10 centro tao longe"
+    }
   ]
 }

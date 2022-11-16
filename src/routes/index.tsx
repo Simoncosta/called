@@ -9,6 +9,7 @@ import SignIn from '../pages/SignIn';
 import SignUp from '../pages/SignUp';
 import Dashboard from "../pages/Dashboard";
 import Profile from "../pages/Profile";
+import Customers from "../pages/Customers";
 
 export default function RoutesIndex() {
     return(
@@ -17,6 +18,7 @@ export default function RoutesIndex() {
                 <Route element={<PrivateRoute />}>
                     <Route path='/dashboard' element={<Dashboard />}/>
                     <Route path='/profile' element={<Profile />}/>
+                    <Route path='/customers' element={<Customers />}/>
                 </Route>
                 <Route path='/' element={<SignIn />}/>
                 <Route path='/register' element={<SignUp />}/>

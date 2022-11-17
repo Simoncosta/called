@@ -10,6 +10,7 @@ import SignUp from '../pages/SignUp';
 import Dashboard from "../pages/Dashboard";
 import Profile from "../pages/Profile";
 import Customers from "../pages/Customers";
+import New from "../pages/New";
 
 export default function RoutesIndex() {
     return(
@@ -19,6 +20,7 @@ export default function RoutesIndex() {
                     <Route path='/dashboard' element={<Dashboard />}/>
                     <Route path='/profile' element={<Profile />}/>
                     <Route path='/customers' element={<Customers />}/>
+                    <Route path='/new' element={<New />}/>
                 </Route>
                 <Route path='/' element={<SignIn />}/>
                 <Route path='/register' element={<SignUp />}/>

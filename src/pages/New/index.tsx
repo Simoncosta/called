@@ -1,19 +1,61 @@
-import { FormEvent, useState } from "react";
+import { FormEvent, useContext, useEffect, useState } from "react";
 import { FiPlus } from "react-icons/fi";
+import { toast } from "react-toastify";
 import Breadcrumbs from "../../components/Breadcrumbs";
 import Header from "../../components/Header";
+import { AuthContext } from "../../contexts/auth";
 import "./new.css";
 
+interface Customers {
+    id: string;
+    nomeFantasia: string;
+}
+
 export default function New() {
+
+    const { user }: any = useContext(AuthContext);
+
+    const [loadCustomers, setLoadCustomers] = useState(true);
+    const [customers, setCustomers] = useState<Customers[]>();
+    const [customersSelected, setCustomersSelected] = useState("");
 
     const [assunto, setAssunto] = useState("Suporte");
     const [status, setStatus] = useState("Aberto");
     const [complemento, setComplemento] = useState("");
 
+    useEffect(() => {
+        async function loadCustomers() {
+            await fetch(`http://localhost:3000/customers`)
+            .then(res => res.json())
+            .then(async result => {
+                let list: any = [];
+
+                result.forEach((element: any) => {
+                   list.push({
+                    id: element.id,
+                    nomeFantasia: element.nameCompany
+                   }) 
+                });
+
+                if(list.length === 0) {
+                    toast.warning("NENHUMA EMPRESA ENCONTRADA.");
+                    setLoadCustomers(false);
+                    return;
+                }
+
+                setCustomers(list);
+                setLoadCustomers(false);
+            })
+            .catch(console.log);  
+        }
+
+        loadCustomers();
+    }, [])
+
     function handleRegister(e: FormEvent) {
         e.preventDefault();
 
-        alert("SHOOW");
+        alert("");
     }
 
     return(
@@ -28,11 +70,19 @@ export default function New() {
                 <div className="container">
                     <form className="form-profile" onSubmit={handleRegister}>
                         <label>Cliente</label>
-                        <select>
-                            <option key={1} value={1}>
-                                IT ROCKET
-                            </option>
-                        </select>
+                        {loadCustomers ? (
+                            <input type="text" disabled={true} placeholder="Carregando..." />
+                        ) : (
+                            <select value={customersSelected} onChange={(e) => setCustomersSelected(e.target.value)}>
+                                {customers?.map((item, index) => {
+                                    return(
+                                        <option key={item.id} value={item.id}>
+                                            {item.nomeFantasia}
+                                        </option>
+                                    );
+                                })}
+                            </select>
+                        )}
 
                         <label>Assunto</label>
                         <select value={assunto} onChange={(e) => setAssunto(e.target.value)}>

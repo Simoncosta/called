@@ -29,7 +29,8 @@
       "assunto": "Visita Tecnina",
       "status": "Aberto",
       "complemento": "Visitar a sala tecnica de TI",
-      "userId": 1668454262893
+      "userId": 1668454262893,
+      "created": "2022-11-18T01:07:25.636Z"
     },
     {
       "id": 1668732826705,
@@ -38,7 +39,28 @@
       "assunto": "Visita Tecnina",
       "status": "Atendido",
       "complemento": "IT ROCKET COMUM",
-      "userId": 1668454262893
+      "userId": 1668454262893,
+      "created": "2022-11-18T01:07:25.636Z"
+    },
+    {
+      "id": 1668733645636,
+      "customer": "IT Rocket",
+      "customersId": 1668612396261,
+      "assunto": "Financeiro",
+      "status": "Aberto",
+      "complemento": "Teste",
+      "userId": 1668454262893,
+      "created": "2022-11-18T01:07:25.636Z"
+    },
+    {
+      "id": 1668734420830,
+      "customer": "IT Rocket",
+      "customersId": 1668612396261,
+      "assunto": "Suporte",
+      "status": "Em Progresso",
+      "complemento": "Em progresso",
+      "userId": 1668454262893,
+      "created": "2022-11-18T01:20:20.830Z"
     }
   ]
 }

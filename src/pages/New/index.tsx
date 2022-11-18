@@ -68,6 +68,7 @@ export default function New() {
                 "status": status,
                 "complemento": complemento,
                 "userId": user.id,
+                "created": new Date(),
             })
             })
             .then(res => res.json())

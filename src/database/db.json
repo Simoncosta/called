@@ -20,5 +20,25 @@
       "cnpj": "123456789",
       "address": "Rua 10 centro tao longe"
     }
+  ],
+  "called": [
+    {
+      "id": 1668732806350,
+      "customer": "IT Rocket New",
+      "customersId": 1668612396262,
+      "assunto": "Visita Tecnina",
+      "status": "Aberto",
+      "complemento": "Visitar a sala tecnica de TI",
+      "userId": 1668454262893
+    },
+    {
+      "id": 1668732826705,
+      "customer": "IT Rocket",
+      "customersId": 1668612396261,
+      "assunto": "Visita Tecnina",
+      "status": "Atendido",
+      "complemento": "IT ROCKET COMUM",
+      "userId": 1668454262893
+    }
   ]
 }

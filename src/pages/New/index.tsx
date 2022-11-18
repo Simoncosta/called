@@ -52,10 +52,32 @@ export default function New() {
         loadCustomers();
     }, [])
 
-    function handleRegister(e: FormEvent) {
+    async function handleRegister(e: FormEvent) {
         e.preventDefault();
 
-        alert("");
+        await fetch("http://localhost:3000/called", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({ 
+                "id": Date.now(), 
+                "customer": customers?.find((customer: any) => customer.id === Number(customersSelected))?.nomeFantasia,
+                "customersId": customers?.find((customer: any) => customer.id === Number(customersSelected))?.id,
+                "assunto": assunto,
+                "status": status,
+                "complemento": complemento,
+                "userId": user.id,
+            })
+            })
+            .then(res => res.json())
+            .then(result => {
+                toast.success("Chamado criado com sucesso!");
+
+                setComplemento("");
+                setCustomersSelected("");
+            })
+            .catch(console.log);
     }
 
     return(
@@ -74,7 +96,8 @@ export default function New() {
                             <input type="text" disabled={true} placeholder="Carregando..." />
                         ) : (
                             <select value={customersSelected} onChange={(e) => setCustomersSelected(e.target.value)}>
-                                {customers?.map((item, index) => {
+                                <option selected>Selecione um valor</option>
+                                {customers?.map((item) => {
                                     return(
                                         <option key={item.id} value={item.id}>
                                             {item.nomeFantasia}

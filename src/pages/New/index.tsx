@@ -1,5 +1,6 @@
 import { FormEvent, useContext, useEffect, useState } from "react";
 import { FiPlus } from "react-icons/fi";
+import { useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import Breadcrumbs from "../../components/Breadcrumbs";
 import Header from "../../components/Header";
@@ -13,6 +14,8 @@ interface Customers {
 
 export default function New() {
 
+    const { id } = useParams();
+
     const { user }: any = useContext(AuthContext);
 
     const [loadCustomers, setLoadCustomers] = useState(true);
@@ -22,6 +25,8 @@ export default function New() {
     const [assunto, setAssunto] = useState("Suporte");
     const [status, setStatus] = useState("Aberto");
     const [complemento, setComplemento] = useState("");
+
+    const [idCustomers, setIdCustomers] = useState(false);
 
     useEffect(() => {
         async function loadCustomers() {
@@ -45,6 +50,10 @@ export default function New() {
 
                 setCustomers(list);
                 setLoadCustomers(false);
+
+                if(id) {
+                    loadId(list);
+                }
             })
             .catch(console.log);  
         }
@@ -52,8 +61,56 @@ export default function New() {
         loadCustomers();
     }, [])
 
+    async function loadId(list: any) {
+        await fetch(`http://localhost:3000/called?id=${id}`)
+            .then(res => res.json())
+            .then(async result => {
+                setAssunto(result[0].assunto);
+                setStatus(result[0].status);
+                setComplemento(result[0].complemento);
+
+                let index = list.filter((item: any) => item.id === result[0].customersId)
+                .map((item: any) => {
+                    return item.id
+                });
+
+                setCustomersSelected(index[0]);
+                setIdCustomers(true);
+            })
+            .catch(() => {
+                console.log("ERRO NO ID PASSADO")
+            });  
+    }
+
     async function handleRegister(e: FormEvent) {
         e.preventDefault();
+
+        if(idCustomers) {
+            await fetch(`http://localhost:3000/called/${id}`, {
+                method: "PATCH",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({ 
+                    "id": Date.now(), 
+                    "customer": customers?.find((customer: any) => customer.id === Number(customersSelected))?.nomeFantasia,
+                    "customersId": customers?.find((customer: any) => customer.id === Number(customersSelected))?.id,
+                    "assunto": assunto,
+                    "status": status,
+                    "complemento": complemento,
+                    "userId": user.id,
+                    "created": new Date(),
+                })
+                })
+                .then(res => res.json())
+                .then(() => {
+
+                    toast.success("Atualizado Chamado com sucesso!");
+                })
+                .catch(console.log);
+
+            return;
+        }
 
         await fetch("http://localhost:3000/called", {
             method: "POST",
@@ -97,7 +154,7 @@ export default function New() {
                             <input type="text" disabled={true} placeholder="Carregando..." />
                         ) : (
                             <select value={customersSelected} onChange={(e) => setCustomersSelected(e.target.value)}>
-                                <option selected>Selecione um valor</option>
+                                <option defaultValue="">Selecione um valor</option>
                                 {customers?.map((item) => {
                                     return(
                                         <option key={item.id} value={item.id}>

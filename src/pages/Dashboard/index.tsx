@@ -3,12 +3,16 @@ import { FiEdit2, FiMessageSquare, FiPlus, FiSearch } from "react-icons/fi";
 import { Link } from "react-router-dom";
 import Breadcrumbs from "../../components/Breadcrumbs";
 import Header from "../../components/Header";
+import Modal from "../../components/Modal";
 import "./dashboard.css";
 
 export function Dashboard() {
 
     const [chamados, setChamados] = useState([]);
     const [loading, setLoading] = useState(true);
+
+    const [showModal, setShowModal] = useState(false);
+    const [detail, setDetail] = useState();
 
     useEffect(() => {
 
@@ -18,6 +22,12 @@ export function Dashboard() {
 
         }
     }, []);
+
+    function togglePostModal(item: any) {
+        setShowModal(!showModal);
+
+        setDetail(item);
+    }
 
     async function loadChamados() {
 
@@ -100,7 +110,7 @@ export function Dashboard() {
                                             </td>
                                             <td data-label="Cadastrado">{called.cadastradoem.substr(0, 10)}</td>
                                             <td data-label="#">
-                                                <button style={{ backgroundColor: "#5BC0DE" }}>
+                                                <button style={{ backgroundColor: "#5BC0DE" }} onClick={() => togglePostModal(called)}>
                                                     <FiSearch color="#FFF" size={17} />
                                                 </button>
                                                 <button style={{ backgroundColor: "#F0AD4E" }}>
@@ -115,6 +125,14 @@ export function Dashboard() {
                     </>
                 )}
             </div>
+
+            {showModal && (
+                <Modal
+                    conteudo={detail}
+                    close={togglePostModal}
+                />
+            )}
+
         </div>
     );
 }

@@ -1,12 +1,15 @@
 import { BrowserRouter as Router } from "react-router-dom";
 import RoutesIndex from "./routes";
 import "./index.css"
+import AuthProvider from "./contexts/auth";
 
 function App() {
   return (
-    <Router>
-      <RoutesIndex />
-    </Router>
+    <AuthProvider>
+      <Router>
+        <RoutesIndex />
+      </Router>
+    </AuthProvider>
   )
 }
 

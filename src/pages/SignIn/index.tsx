@@ -1,6 +1,7 @@
 import { FormEvent, useState } from 'react';
 import { Link } from 'react-router-dom';
 
+import "./signin.css";
 import logo from '../../assets/logo.png';
 
 export default function SignIn() {

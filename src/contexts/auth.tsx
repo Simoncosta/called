@@ -21,7 +21,6 @@ export default function AuthProvider({ children }: any) {
             const storageUser = localStorage.getItem('called');
 
             if (storageUser) {
-                console.log("EXISTE")
                 setUser(JSON.parse(storageUser));
                 setLoading(false);
             }
@@ -122,7 +121,9 @@ export default function AuthProvider({ children }: any) {
             user,
             signIn,
             signUp,
-            signOut
+            signOut,
+            setUser,
+            storageUser
         }}>
             {children}
         </AuthContext.Provider>

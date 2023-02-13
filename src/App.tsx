@@ -3,6 +3,8 @@ import RoutesIndex from "./routes";
 import "./index.css"
 import AuthProvider from "./contexts/auth";
 
+import 'react-toastify/dist/ReactToastify.css';
+
 function App() {
   return (
     <AuthProvider>

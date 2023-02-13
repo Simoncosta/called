@@ -1,19 +1,30 @@
-import { FormEvent, useState } from "react";
-import { Link } from "react-router-dom";
+import { FormEvent, useContext, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 
 import "../SignIn/signin.css";
 import logo from '../../assets/logo.png';
+import { AuthContext } from "../../contexts/auth";
 
 export default function SignUp() {
+    
+    const navigate = useNavigate();
 
     const [email, setEmail] = useState('');
     const [nome, setNome] = useState('');
     const [password, setPassword] = useState('');
 
+    const { signUp }: any = useContext(AuthContext);
+
     function handleSubmit(e: FormEvent) {
         e.preventDefault();
 
-        alert("CHEGGOU");
+        if(nome !== '' && email !== '' && password !== '') {
+            signUp(email, password, nome);
+            
+            navigate('/dashboard');
+        } else {
+            alert("Algum campo vazio.");
+        }
     }
 
     return(

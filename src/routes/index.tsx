@@ -5,6 +5,7 @@ import {
 } from 'react-router-dom'
 import Customers from "../pages/Customers";
 import Dashboard from "../pages/Dashboard";
+import New from "../pages/New";
 import Profile from "../pages/Profile";
 
 import SignIn from "../pages/SignIn";
@@ -19,6 +20,7 @@ export default function RoutesIndex() {
                     <Route path="/dashboard" element={<Dashboard />} />
                     <Route path="/profile" element={<Profile />} />
                     <Route path="/customers" element={<Customers />} />
+                    <Route path="/new" element={<New />} />
                 </Route>
                 <Route path="/" element={<SignIn />} />
                 <Route path="/register" element={<SignUp />} />

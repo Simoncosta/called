@@ -21,6 +21,7 @@ export default function RoutesIndex() {
                     <Route path="/profile" element={<Profile />} />
                     <Route path="/customers" element={<Customers />} />
                     <Route path="/new" element={<New />} />
+                    <Route path="/new/:id" element={<New />} />
                 </Route>
                 <Route path="/" element={<SignIn />} />
                 <Route path="/register" element={<SignUp />} />

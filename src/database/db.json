@@ -26,5 +26,47 @@
       "cnpj": "654321",
       "endereco": "Rua do Brasil"
     }
+  ],
+  "called": [
+    {
+      "id": 1676658690849,
+      "customer": "Banco do Brasil",
+      "customerId": "1676492969326",
+      "assunto": "Visita Tecnica",
+      "status": "Atendimento",
+      "complemento": "Precisando de uma ajuda na fatura UPDATE",
+      "userId": 1676059675554,
+      "created": "2023-02-17T18:31:30.849Z"
+    },
+    {
+      "id": 1676659616921,
+      "customer": "Banco do Brasil",
+      "customerId": "1676492969326",
+      "assunto": "Visita Tecnica",
+      "status": "Em Progresso",
+      "complemento": "Pra fazer a prova do BB concurso!!!",
+      "userId": 1676059675554,
+      "created": "2023-02-17T18:46:56.921Z"
+    },
+    {
+      "id": 1676662036276,
+      "customer": "Ada Teacher",
+      "customerId": "1676492956456",
+      "assunto": "Suporte",
+      "status": "Atendimento",
+      "complemento": "Colocar os videos disponivel pros alunos",
+      "userId": 1676059675554,
+      "created": "2023-02-17T19:27:16.276Z"
+    },
+    {
+      "id": 1676662064691,
+      "customer": "Banco do Brasil",
+      "customerId": "1676492969326",
+      "assunto": "Visita Tecnica",
+      "status": "Em Progresso",
+      "complemento": "Ao paozinho",
+      "userId": 1676059675554,
+      "created": "2023-02-17T19:27:44.691Z"
+    }
   ]
 }
